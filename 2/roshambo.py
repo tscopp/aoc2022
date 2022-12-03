@@ -1,0 +1,51 @@
+# A for rock, B for paper, C for scissors:
+# X for rock, Y for paper, Z for scissors
+# Score for a round is the shape chosen (Rock: 1, Paper: 2, Scissors: 3) plus the score for the outcome of the round (Loss: 0, draw: 3, win: 6)
+#
+
+def translate(move):
+    if move == "A" or move == "X":
+        return "rock"
+    if move == "B" or move == "Y":
+        return "paper"
+    if move == "C" or move == "Z":
+        return "scissors"
+
+
+def match(opponent_move, player_move):
+    match_score = 0
+    # Score the invdividual moves
+    if player_move == "X":
+        match_score = match_score + 1
+    if player_move == "Y":
+        match_score = match_score + 2
+    if player_move == "Z":
+        match_score = match_score + 3
+    # Score the outcome of the match
+    if opponent_move == "A":
+        if player_move == "X":
+            match_score = match_score + 3
+        if player_move == "Y":
+            match_score = match_score + 6
+    if opponent_move == "B":
+        if player_move == "Y":
+            match_score = match_score + 3
+        if player_move == "Z":
+            match_score = match_score + 6
+    if opponent_move == "C":
+        if player_move == "X":
+            match_score = match_score + 6
+        if player_move == "Z":
+            match_score = match_score + 3
+    return match_score
+
+
+def run_strat(strategy):
+    total_score = 0
+    for line in strategy:
+        total_score = total_score + match(line.split()[0], line.split()[1])
+    return(total_score)
+
+
+f = open("input.txt", "r")
+print(run_strat(f))
