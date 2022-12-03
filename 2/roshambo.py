@@ -12,6 +12,40 @@ def translate(move):
         return "scissors"
 
 
+def translate_outcome(outcome):
+    if outcome == "X":
+        return "lose"
+    if outcome == "Y":
+        return "draw"
+    if outcome == "Z":
+        return "win"
+
+
+def determine_move(opponent_move, outcome):
+    print(f"Opponent plays: {translate(opponent_move)} we want to {translate_outcome(outcome)}")
+    if outcome == "X":  # lose
+        if opponent_move == "A":  # rock
+            return("Z")           # scissors
+        if opponent_move == "B":  # paper
+            return("X")           # rock
+        if opponent_move == "C":  # scissors
+            return("Y")           # paper
+    if outcome == "Y":  # draw
+        if opponent_move == "A":  # rock
+            return("X")           # rock
+        if opponent_move == "B":  # paper
+            return("Y")           # paper
+        if opponent_move == "C":  # scissors
+            return("Z")           # scissors
+    if outcome == "Z":  # win
+        if opponent_move == "A":  # rock
+            return("Y")           # paper
+        if opponent_move == "B":  # paper
+            return("Z")           # scissors
+        if opponent_move == "C":  # scissors
+            return("X")           # rock
+
+
 def match(opponent_move, player_move):
     match_score = 0
     # Score the invdividual moves
@@ -43,7 +77,10 @@ def match(opponent_move, player_move):
 def run_strat(strategy):
     total_score = 0
     for line in strategy:
-        total_score = total_score + match(line.split()[0], line.split()[1])
+        opponent_move, outcome = line.split()[0], line.split()[1]
+        player_move = determine_move(opponent_move, outcome)
+        print(translate(player_move))
+        total_score = total_score + match(opponent_move, player_move)
     return(total_score)
 
 

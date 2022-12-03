@@ -10,7 +10,6 @@ def test_translate():
     assert(roshambo.translate("Z") == "scissors")
 
 
-
 def test_match():
     assert(roshambo.match("", "") == 0)
     assert(roshambo.match("A", "Y") == 8)
@@ -28,5 +27,5 @@ def test_match():
 
 def test_run_strat():
     f = open("sample_input.txt", "r")
-    assert(roshambo.run_strat(f) == 15)
+    assert(roshambo.run_strat(f) == 12)
 
