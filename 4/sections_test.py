@@ -25,4 +25,6 @@ def test_is_contained():
     assert(sections.is_contained(sections.range_to_list("2-6"), sections.range_to_list("4-8")) is False)
     assert(sections.is_contained(sections.range_to_list("4-8"), sections.range_to_list("2-6")) is False)
     assert(sections.is_contained(sections.range_to_list("1-10"), sections.range_to_list("2-4")) is True)
+    assert(sections.is_contained(sections.range_to_list("2-4"), sections.range_to_list("1-10")) is True)
     assert(sections.is_contained(sections.range_to_list("10-20"), sections.range_to_list("11-15")) is True)
+    assert(sections.is_contained(sections.range_to_list("11-15"), sections.range_to_list("10-20")) is True)
