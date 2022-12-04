@@ -11,12 +11,19 @@ def is_contained(set1, set2):
     return False
 
 
+def is_overlapped(set1, set2):
+    return bool(set(set1).intersection(set(set2)))
+
+
 f = open("input.txt", "r")
 contained_pairs = 0
+overlapped_pairs = 0
 for line in f:
     set1 = range_to_list(line.split(",")[0])
     set2 = range_to_list(line.split(",")[1])
     if is_contained(set1, set2):
         contained_pairs = contained_pairs + 1
+    if is_overlapped(set1, set2):
+        overlapped_pairs = overlapped_pairs + 1
 
-print(contained_pairs)
+print(overlapped_pairs)
