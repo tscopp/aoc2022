@@ -6,9 +6,12 @@ for stack in range(1, 12):
 
 def move_crates(number_to_move, source, dest):
     print(f"!! Move {number_to_move} from {source} to {dest}")
+    containers = []
     for moves in range(0, number_to_move):
-        container = rows[int(source)].pop()
-        print(f"move {container} from {source} to {dest}")
+        containers.append(rows[int(source)].pop())
+    containers.reverse()
+    print(f"move {containers} from {source} to {dest}")
+    for container in containers:
         rows[dest].append(container)
 
 
