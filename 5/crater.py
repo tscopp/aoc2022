@@ -5,12 +5,11 @@ for stack in range(1, 12):
 
 
 def move_crates(number_to_move, source, dest):
-    print(f"!! Move {number_to_move} from {source} to {dest}")
     containers = []
     for moves in range(0, number_to_move):
         containers.append(rows[int(source)].pop())
     containers.reverse()
-    print(f"move {containers} from {source} to {dest}")
+    print(f"Move {number_to_move} ({containers}) from {source} to {dest}")
     for container in containers:
         rows[dest].append(container)
 
@@ -38,13 +37,11 @@ for line in f:
         number_to_move = int(line.split(" ")[1])
         source = int(line.split(" ")[3])
         dest = int(line.split(" ")[5])
-        print(f"{source} :: {rows[source]}")
-        print(f"{dest} :: {rows[dest]}")
+        print(f"{source} :: PRE :: {rows[source]}")
+        print(f"{dest} :: PRE :: {rows[dest]}")
         move_crates(number_to_move, int(source), int(dest))
-        print(f"{source} :: {rows[source]}")
-        print(f"{dest} :: {rows[dest]}\n\n")
+        print(f"{source} :: POST :: {rows[source]}")
+        print(f"{dest} :: POST :: {rows[dest]}\n\n")
 
 for row in range(0, len(rows)):
     print(rows[row][-1:])
-for row in range(0, len(rows)):
-    print(rows[row])
