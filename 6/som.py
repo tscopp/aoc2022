@@ -1,23 +1,22 @@
 f = open("input.txt", "r")
 
-for line in f:
-    input_list = [*line]
+input_list = [*f.read()]
 
 char_counter = 0
 for character in input_list:
     char_list = []
-    try:
-        for i in range(0, 14):
+    for i in range(0, 14):
+        try:
             char_list.append(input_list[char_counter + i])
-        if len(set(char_list)) == len(char_list):
-            print(f"Unique: {char_list}")
-            char_counter += len(char_list) 
-            break
-        else:
-            print(f"Not Unique: {char_list}")
+        except IndexError as e:
+            print(e)
+    if len(set(char_list)) == len(char_list):
+        print(f"Unique: {char_list}")
+        char_counter += len(char_list) 
+        break
+    else:
+        print(f"Not Unique: {char_list}")
 
-    except IndexError as e:
-        print(e)
     print("\n")
     char_counter += 1
 
